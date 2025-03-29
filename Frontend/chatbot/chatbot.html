@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KJSIT Bot</title>
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="shortcut icon" href="/assets/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="header" id="header">
+        <header class="header-content">
+            <a href="/index.html" class="logo">
+                <img src="/assets/logo.png" alt="Bot Logo" class="logo-icon" />
+                <span class="logo-text">KJSIT Bot</span>
+            </a>
+
+            <nav class="nav">
+                <a href="/index.html" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="#about" class="nav-link">About</a>
+            </nav>
+
+            <a href="https://kjsit.somaiya.edu.in/en/contact-us" class="contact-button">Contact Us</a>
+
+            <button class="menu-button" id="menuToggle">
+                <i class="fas fa-bars menuicon"></i>
+            </button>
+        </header>
+    </div>
+
+    <div class="chat-body">
+        <!-- Mobile sidebar toggle button -->
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="chat-container">
+            <!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <!-- User Profile -->
+                <div class="user-profile">
+                    <div class="profile-image">
+                        <img src="/assets/person.png" alt="User Profile">
+                    </div>
+                    <div class="profile-info">
+                        <h3 class="user-name">Student</h3>
+                        <p class="user-status">Online</p>
+                    </div>
+                </div>
+
+                <!-- Chat History -->
+                <div class="chat-history">
+                    <h3 class="history-title">Recent Chats</h3>
+                    <ul class="history-list">
+                        <li class="history-item active">
+                            <span class="history-icon"><span class="material-icons-outlined">chat</span></span>
+                            <span class="history-text">Admission Query</span>
+                        </li>
+                        <li class="history-item">
+                            <span class="history-icon"><span class="material-icons-outlined">description</span></span>
+                            <span class="history-text">Fee Structure</span>
+                        </li>
+                        <li class="history-item">
+                            <span class="history-icon"><span class="material-icons-outlined">menu_book</span></span>
+                            <span class="history-text">Course Details</span>
+                        </li>
+                        <li class="history-item">
+                            <span class="history-icon"><span class="material-icons-outlined">event</span></span>
+                            <span class="history-text">Important Dates</span>
+                        </li>
+                        <li class="history-item">
+                            <span class="history-icon"><span class="material-icons-outlined">home_work</span></span>
+                            <span class="history-text">Campus Facilities</span>
+                        </li>
+                    </ul>
+                    <button class="new-chat-btn">
+                        <span class="material-icons-outlined">add_comment</span> New Chat
+                    </button>
+                </div>
+
+
+                <!-- Back to Home -->
+                <div class="back-to-home">
+                    <a href="/index.html" class="home-link">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                </div>
+            </div>
+
+            <!-- Main Chat Area -->
+            <div class="main-chat">
+                <!-- Chat Header -->
+                <div class="chat-header">
+                    <h2>KJSIT Admission Assistant</h2>
+                    <div class="header-actions">
+                        <button class="clear-chat-btn" title="Clear chat">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <button class="settings-btn" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-messages" id="chatMessages">
+                    <!-- AI Welcome Message -->
+                    <div class="message ai-message">
+                        <div class="message-avatar">
+                            <img src="/assets/logo.png" alt="Bot Avatar">
+                        </div>
+                        <div class="message-content">
+                            <p>👋 Hi there! I'm your KJSIT Admission Assistant. How can I help you with your admission
+                                queries today?</p>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Typing indicator (hidden by default, show with JS) -->
+                    <div class="typing" style="display: none;">
+                        <div class="dot dot-1"></div>
+                        <div class="dot dot-2"></div>
+                        <div class="dot dot-3"></div>
+                    </div>
+                </div>
+
+                <!-- Suggestion Buttons -->
+                <div class="suggestion-buttons">
+                    <button class="suggestion-btn">Eligibility criteria</button>
+                    <button class="suggestion-btn">How to apply</button>
+                    <button class="suggestion-btn">Fee structure</button>
+                    <button class="suggestion-btn">Scholarship options</button>
+                    <button class="suggestion-btn">Important dates</button>
+                    <button class="suggestion-btn">Required documents</button>
+                    <button class="suggestion-btn">Campus facilities</button>
+                    <button class="suggestion-btn">Placement statistics</button>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type your message here...">
+                    <button id="sendBtn">
+                        <img src="/assets/up.png" alt="Send">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="chatbot.js"></script>
+
+    <!-- 
+    <script>
+        // Simple JavaScript for sidebar toggle functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+
+            // Function to toggle sidebar
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+            }
+            function toggleNavbar() {
+                nav.classList.toggle('open');
+            }
+
+            // Event listeners for both toggle buttons
+            sidebarBtn.addEventListener('click', toggleSidebar);
+            navbarBtn.addEventListener('click', toggleNavbar);
+
+            // Function to add user message to chat
+            function addUserMessage(message) {
+                const chatMessages = document.getElementById('chatMessages');
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.className = 'message user-message';
+
+                userMessageDiv.innerHTML = `
+                    <div class="message-avatar">
+                        <img src="../assets/user-avatar.png" alt="User Avatar">
+                    </div>
+                    <div class="message-content">
+                        <p>${message}</p>
+                    </div>
+                `;
+
+                chatMessages.appendChild(userMessageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Show typing indicator
+                const typingIndicator = document.querySelector('.typing');
+                typingIndicator.style.display = 'flex';
+            }
+
+            // Function to simulate bot response
+            function simulateResponse(userMessage) {
+                // Simulate a delay for response
+                setTimeout(() => {
+                    // Hide typing indicator
+                    const typingIndicator = document.querySelector('.typing');
+                    typingIndicator.style.display = 'none';
+
+                    // Generate response based on user input
+                    let response = '';
+                    if (userMessage.toLowerCase().includes('eligibility')) {
+                        response = 'For B.Tech Computer Science, you need:<br>- Minimum 60% in 10+2 with PCM<br>- Valid JEE Mains score<br>- Must have passed 12th in 2023 or 2024';
+                    } else if (userMessage.toLowerCase().includes('apply')) {
+                        response = 'To apply:<br>1. Register on the state CET cell website<br>2. Fill the application form with your JEE Mains score<br>3. Select KJSIT as one of your preferred colleges<br>4. Wait for allotment results';
+                    } else if (userMessage.toLowerCase().includes('fee')) {
+                        response = 'The fee structure for B.Tech Computer Science is:<br>- Tuition fee: ₹1,25,000 per year<br>- Development fee: ₹15,000 per year<br>- Exam fee: ₹5,000 per year<br>- Caution money deposit: ₹10,000 (refundable)';
+                    } else if (userMessage.toLowerCase().includes('scholarship')) {
+                        response = 'We offer several scholarship options:<br>- Merit-based scholarships for top JEE rankers<br>- Financial need-based scholarships<br>- Sports excellence scholarships<br>- Girl student scholarships';
+                    } else if (userMessage.toLowerCase().includes('dates')) {
+                        response = 'Important dates:<br>- Application start: June 10, 2025<br>- Application deadline: July 15, 2025<br>- Merit list: July 30, 2025<br>- Counseling: August 5-15, 2025<br>- Classes begin: September 1, 2025';
+                    } else if (userMessage.toLowerCase().includes('documents')) {
+                        response = 'Required documents:<br>- JEE Mains scorecard<br>- 10th and 12th mark sheets<br>- Transfer certificate<br>- Character certificate<br>- Domicile certificate (if applicable)<br>- Category certificate (if applicable)<br>- 4 passport size photographs';
+                    } else if (userMessage.toLowerCase().includes('facilities')) {
+                        response = 'Our campus offers:<br>- State-of-the-art computer labs<br>- High-speed Wi-Fi<br>- Digital library<br>- Sports complex<br>- Cafeteria<br>- Hostel facilities<br>- 24/7 medical assistance';
+                    } else if (userMessage.toLowerCase().includes('placement')) {
+                        response = 'Our placement statistics:<br>- 92% placement rate for CS graduates<br>- Average package: ₹8.5 LPA<br>- Highest package: ₹24 LPA<br>- Top recruiters: TCS, Infosys, Wipro, Amazon, Microsoft';
+                    } else {
+                        response = 'Thank you for your query. Is there anything specific about KJSIT admissions you would like to know?';
+                    }
+
+                    // Add AI response to chat
+                    const chatMessages = document.getElementById('chatMessages');
+                    const aiMessageDiv = document.createElement('div');
+                    aiMessageDiv.className = 'message ai-message';
+
+                    aiMessageDiv.innerHTML = `
+                        <div class="message-avatar">
+                            <img src="../assets/logo.png" alt="Bot Avatar">
+                        </div>
+                        <div class="message-content">
+                            <p>${response}</p>
+                        </div>
+                    `;
+
+                    chatMessages.appendChild(aiMessageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1500); // 1.5 second delay to simulate thinking
+            }
+
+            // Suggestion buttons functionality
+            const suggestionBtns = document.querySelectorAll('.suggestion-btn');
+            suggestionBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const suggestionText = this.textContent;
+                    document.getElementById('userInput').value = suggestionText;
+
+                    // Optionally, you can automatically send the suggestion
+                    addUserMessage(suggestionText);
+                    simulateResponse(suggestionText);
+                });
+            });
+
+            // Send button functionality
+            document.getElementById('sendBtn').addEventListener('click', function () {
+                const userInput = document.getElementById('userInput');
+                const message = userInput.value.trim();
+
+                if (message !== '') {
+                    addUserMessage(message);
+                    simulateResponse(message);
+                    userInput.value = '';
+                }
+            });
+
+            // Enter key functionality
+            document.getElementById('userInput').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    const message = this.value.trim();
+
+                    if (message !== '') {
+                        addUserMessage(message);
+                        simulateResponse(message);
+                        this.value = '';
+                    }
+                }
+            });
+
+            // Clear chat functionality
+            document.querySelector('.clear-chat-btn').addEventListener('click', function () {
+                const chatMessages = document.getElementById('chatMessages');
+                // Keep only the first AI welcome message
+                const welcomeMessage = chatMessages.querySelector('.ai-message');
+                chatMessages.innerHTML = '';
+                chatMessages.appendChild(welcomeMessage);
+            });
+        });
+
+
+    </script> -->
+</body>
+
+</html>
