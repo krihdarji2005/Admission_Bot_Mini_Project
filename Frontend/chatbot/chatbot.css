@@ -184,6 +184,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+
   
 }
 
@@ -197,6 +198,8 @@ body {
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   box-shadow: var(--shadow-lg);
+ 
+
 }
 
 /* Sidebar Styles */
@@ -854,7 +857,7 @@ body {
     width: 32px;
     height: 32px;
   }
-  
+ 
   .user-profile {
     padding: 1.25rem;
   }
