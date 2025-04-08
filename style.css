@@ -382,6 +382,7 @@ a {
   /* box-shadow: var(--shadow-lg); */
   transition: all var(--transition-normal);
   animation: fadeIn 2s ease;
+  
 }
 
 @keyframes fadeIn {
@@ -469,7 +470,12 @@ a {
 .program-links-image:hover img {
   transform: scale(1.03);
 }
-
+/* Remove image for phones */
+@media (max-width: 768px) {
+  .program-links-image img {
+    display: none;
+  }
+}
 /* .image-glow {
   position: absolute;
   top: -10px;
@@ -613,7 +619,7 @@ a {
 /* Responsive styles */
 @media (min-width: 768px) {
   .program-links-wrapper {
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
     
   }
@@ -625,6 +631,8 @@ a {
 
   .program-links-image {
     order: 2;
+  
+
   }
 
   .program-header {
